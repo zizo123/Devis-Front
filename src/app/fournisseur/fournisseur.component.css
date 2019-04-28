@@ -1,0 +1,26 @@
+.modal {
+  text-align: center;
+  padding: 0!important;
+}
+
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px; /* Adjusts for spacing */
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+.modal.fade .modal-dialog {
+  transform: translate(0, 3%);
+}
+input.ng-dirty.ng-invalid {border: solid red 2px; }
+input.ng-dirty.ng-valid {border: solid green 2px; }
+#drop{
+  width: 100%;
+}

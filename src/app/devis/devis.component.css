@@ -1,0 +1,35 @@
+ul {
+ width: 500px;
+ background: #292929;
+ color: white;
+ list-style: none;
+ padding-left: 0;
+ width: 100%;
+}
+ 
+li {
+ padding: 10px;
+ border-bottom: 1px solid black;
+ border-top: 1px solid #3c3c3c;
+}
+
+.bouton12 {
+	float:center;
+	border:none;
+	padding:6px 0 6px 0;
+	border-radius:2px;
+	box-shadow:3px 3px 12px #999;
+	background:#fff;
+	font:bold 13px Arial;
+	color:#555;
+}
+#drop{
+  width: 100%;
+  cursor: pointer;
+}
+#color{
+	color:blue;
+}
+.clickable{
+  cursor: pointer;
+}

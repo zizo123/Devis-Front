@@ -1,0 +1,121 @@
+<h1 align="center">Liste des Fournisseurs</h1>
+ <div class="container">
+  <div class="row">
+   <div class="container">
+    <div class="row">
+	 <h2>Chercher le nom du Fournisseur</h2>
+		<div id="custom-search-input">
+					<div class="input-group col-md-12">
+						<input type="text" class="search-query form-control" 
+						placeholder="Search" name="mc" 
+						#searchField="ngModel" 
+						(keyup)="onKeyup(searchField.value)"
+						[(ngModel)]="mc"/>
+						<span class="input-group-btn">
+						<button class="btn btn-danger"  type="button" (click)="chercherFournisseur(mc)">
+							<span class="glyphicon glyphicon-search"></span>
+						</button>
+						</span>
+					</div>
+				</div>
+	 		</div>
+		</div>
+	<hr size=0 width=30% align=center> 
+        
+<div class="col-md-12">
+  <div class="table-responsive">
+	<table class="table table-bordred table-striped">
+	  <thead class="thead-inverse">
+		<tr>
+		  <th>Nom Fournisseur</th>
+		  <th>Adresse du Fournisseur</th>
+		  <th>Telephone du Fournisseur</th>
+		  <th>Email du Fournisseur</th>
+		  <th>Action</th>
+		</tr>
+	  </thead>
+ 
+
+	  <tbody>
+		<tr class="clickable" *ngFor="let fournisseur of fournisseurList" 
+		[class.selected]="fournisseur" >
+		  <td>{{fournisseur.nom_f}}</td>
+		  <td>{{fournisseur.adresse_f}}</td>
+		  <td>{{fournisseur.telephone_f}}</td>
+		  <td>{{fournisseur.email_f}}</td>	
+
+	    <td>
+	    	<a data-toggle="modal" [attr.data-target]="'#myModal'+fournisseur.id_f" href>
+						<span class="glyphicon glyphicon-pencil"></span>
+				</a>
+				<div class="modal fade" id="myModal{{fournisseur.id_f}}" role="dialog">
+							<div class="modal-dialog">
+							
+								<!-- Modal content-->
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title">Edit Fournisseur</h4>
+									</div>
+									<div class="modal-body">
+										<form class="container" #form="ngForm">
+													
+												<div class="form-group">
+													<label>Nom du Fournisseur</label>
+													<input type="text" class="form-control" name="nom_f" 
+														placeholder="Nom du Fournisseur" 
+														#nomFournisseurField="ngModel" 
+														[(ngModel)]="fournisseur.nom_f" required>
+														<p *ngIf="nomFournisseurField.invalid && nomFournisseurField.touched" class="alert alert-danger">Nom Invalide</p>
+												</div>
+
+												<div class="form-group">
+													<label>Adresse du Fournisseur</label>
+													<input type="text" class="form-control" name="adresse_f" 
+														placeholder="Adresse complete du Fournisseur" 
+														#adresseFournisseurField="ngModel" 
+														[(ngModel)]="fournisseur.adresse_f" required>
+														<p *ngIf="adresseFournisseurField.invalid && adresseFournisseurField.touched" class="alert alert-danger">Adresse Invalide</p>
+												</div>
+													
+												<div class="form-group">
+													<label>Telephone du Fournisseur</label>
+													<input type="text" class="form-control" name="telephone_f" 
+														placeholder="Telephone du Fournisseur" 
+														#telephoneFournisseurField="ngModel" 
+														[(ngModel)]="fournisseur.telephone_f" required>
+														<p *ngIf="telephoneFournisseurField.invalid && telephoneFournisseurField.touched" class="alert alert-danger">Telephone Invalide</p>
+												</div>
+
+												<div class="form-group">
+													<label>Email du Fournisseur</label>
+													<input type="email" class="form-control" name="email" 
+														placeholder="Email du Fournisseur" 
+														#emailFournisseurField="ngModel" 
+														[(ngModel)]="fournisseur.email_f" required>
+														<p *ngIf="emailFournisseurField.invalid && emailFournisseurField.touched" class="alert alert-danger">email Invalide</p>
+												</div>
+										</form>
+									</div>
+									
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal" (click)="updateFournisseur(fournisseur)" >Update</button>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					<a (click)="deleteFournisseur(fournisseur)" href>
+						<span class="glyphicon glyphicon-trash" ></span>
+					</a>
+				</td>
+				</tr>
+
+
+			</tbody>
+			</table>
+			<a [routerLink]="['/add-fournisseur']" class="btn btn-primary">add Fournisseur</a>
+   </div>
+  </div>
+ </div>
+</div>

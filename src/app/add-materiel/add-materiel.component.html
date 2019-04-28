@@ -1,0 +1,66 @@
+
+	<h1 align="center">Materiel Ajout</h1>
+	<div class="container">
+		<form class="container" novalidate #form="ngForm">
+
+		  <div class="form-group">
+			<label>Numero de serie du Materiel</label>
+			<input type="text" class="form-control" name="numMat" 
+				placeholder="Numero du Materiel" 
+				#numMatField="ngModel" 
+				[(ngModel)]="materiel.numMat" required>
+				<p *ngIf="numMatField.invalid && numMatField.touched" class="alert alert-danger">Numero Invalide</p>
+			</div>
+				
+			 <!-- <div class="form-group">
+			<label>Nom du Fournisseur</label>
+				<select size="1" class="form-control" name="nomFournisseur" #nomFournisseurField="ngModel" [(ngModel)]="materiel.nomFournisseur" required>
+					<option value="pc portable" selected>Pc Portable</option>
+				</select>
+				<p *ngIf="nomFournisseurField.invalid && nomFournisseurField.touched" class="alert alert-danger">nom Fournisseur Invalide</p>
+		  </div>  -->
+			
+			<div class="form-group">
+			<label>Description du materiel</label>
+			<input type="text" class="form-control" name="description" 
+				placeholder="description" 
+				#descriptionField="ngModel" 
+				[(ngModel)]="materiel.description" required>
+				<p *ngIf="descriptionField.invalid && descriptionField.touched" class="alert alert-danger">Invalid description</p>
+			</div>
+			
+			<div class="form-group">
+			<label>Marque</label>
+			<input type="text" class="form-control" name="marque" 
+			placeholder="marque" 
+			#marqueField="ngModel" 
+			[(ngModel)]="materiel.marque" required>
+			<p *ngIf="marqueField.invalid && marqueField.touched" class="alert alert-danger">Invalid Marque</p>
+		  </div>
+			
+			<div class="form-group">
+			<label>Prix du materiel</label>
+			<input type="text" class="form-control" name="prixMateriel" 
+				placeholder="Prix du materiel" 
+				#prixMaterielField="ngModel" 
+				[(ngModel)]="materiel.prixMateriel" required>
+				<p *ngIf="prixMaterielField.invalid && prixMaterielField.touched" class="alert alert-danger">Invalid prix</p>
+		  </div>
+			
+			<div class="form-group" >
+			<label>Type du materiel</label>
+				<select size="1" class="form-control" name="typeMateriel" #typeMaterielField="ngModel" [(ngModel)]="materiel.typeMateriel" required>
+					<option value="pc portable" selected>Pc Portable</option>
+					<option value="pc fixe">Pc Fixe</option>
+					<option value="ondulateur">ondulateur</option>
+					<option value="serveur">serveur</option>
+				</select>
+				<p *ngIf="typeMaterielField.invalid && prixMaterielField.touched" class="alert alert-danger">Please select One</p>
+			</div>
+				
+	</form>
+
+	<button type="button" [disabled]="form.invalid" class="btn btn-primary active" (click)="addMateriel()" [routerLink]="['/materiel'] ">Ajouter Materiel</button>
+</div>
+
+	

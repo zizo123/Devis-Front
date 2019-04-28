@@ -1,0 +1,134 @@
+<h1 align="center">Liste des Materiaux</h1>
+<div class="container">
+	<div class="row">
+		<div class="container">
+			<div class="row">
+				<h2>Chercher le Referentiel du Materiel</h2>
+				<div id="custom-search-input">
+					<div class="input-group col-md-12">
+						<input type="text" class="search-query form-control" 
+						placeholder="Search" 
+						#searchField="ngModel" 
+						(keyup)="onKeyup(searchField.value)"
+						[(ngModel)]="mc" />
+						<span class="input-group-btn">
+						<button class="btn btn-danger"  type="button" (click)="getMateriel()">
+							<span class=" glyphicon glyphicon-search" ></span>
+						</button>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<hr size=0 width=30% align=center>
+
+		<div class="col-md-12">
+			<div class="table-responsive">
+				<table class="table table-bordred table-striped">
+					<thead class="thead-inverse">
+						<tr>
+							<th>#</th>
+							<th>Referentiel Materiel</th>
+							<th>Marque</th>
+							<th>Description</th>
+							<th>Prix du materiel</th>
+							<th>Type du materiel</th>
+
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let materiel of materielList" >
+							<td><input type="checkbox" class="checkthis" /></td>
+							<td>{{materiel.numMat}} </td>
+							<td>{{materiel.marque}}</td>
+							<td>{{materiel.description}}</td>
+							<td>{{materiel.prixMateriel}}</td>
+							<td>{{materiel.typeMateriel}}</td>
+
+							<td>
+								<a data-toggle="modal" [attr.data-target]="'#myModal'+materiel.id_materiel" href>
+										<span id="greenShit" class="glyphicon glyphicon-pencil active"></span>
+								</a>
+								<div class="modal fade" id="myModal{{materiel.id_materiel}}">
+									<div class="modal-dialog">
+
+										<!-- Modal content-->
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal">&times;</button>
+												<h4 class="modal-title">Edit Materiel</h4>
+											</div>
+											<div class="modal-body">
+												<form #form="ngForm">
+
+													<div class="form-group">
+														<label>Numero de serie du Materiel</label>
+														<input type="text" class="form-control" name="numMat" #numMatField="ngModel" [(ngModel)]="materiel.numMat">
+													</div>
+
+													<div class="form-group">
+														<label>Nom du Fournisseur</label>
+														<input type="text" class="form-control" name="nomFournisseur" #nomFournisseurField="ngModel" [(ngModel)]="materiel.nomFournisseur">
+													</div>
+
+													<!-- <div class="form-group">
+														<label>Description du materiel</label>
+														<input type="text" class="form-control" name="description" #descriptionField="ngModel" [(ngModel)]="materiel.description">
+													</div> -->
+
+													<div class="form-group">
+														<label>Marque</label>
+														<input type="text" class="form-control" name="marque" #marqueField="ngModel" [(ngModel)]="materiel.marque">
+													</div>
+
+													<div class="form-group">
+														<label>Prix du materiel</label>
+														<input type="text" class="form-control" name="prixMateriel" #prixMaterielField="ngModel" [(ngModel)]="materiel.prixMateriel">
+													</div>
+
+													<div class="form-group">
+														<label>Type du materiel</label>
+														<select size="1" class="form-control" name="typeMateriel" #typeMaterielField="ngModel" [(ngModel)]="materiel.typeMateriel">
+																				<option value="pc portable" selected>Pc Portable</option>
+																				<option value="pc fixe">Pc Fixe</option>
+																				<option value="ondulateur">ondulateur</option>
+																				<option value="serveur">serveur</option>
+																			</select>
+													</div>
+
+												</form>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal" (click)="updateMateriel(materiel)">Update</button>		
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<a (click)="deleteMateriel(materiel)" href="materiel">
+										<span class="glyphicon glyphicon-trash" ></span>
+								</a>
+									
+								<a (click)="deleteMateriel()" href="materiel">	
+									<span class="glyphicon glyphicon-chevron-right"></span>
+								</a>
+							</td>
+						</tr>
+
+					</tbody>
+
+				</table>
+				<div class="container">
+					<!-- class="nav nav-pills" -->
+					<ul  class="pagination" *ngIf="true">
+						<li [ngClass]="{active:currentPage1==i}" *ngFor="let p of pages;let i=index;trackBy : p" class="clickable">
+							<a (click)="gotoPage(i)">{{i}}</a>
+						</li>
+					</ul> 
+				</div>
+				<a [routerLink]="['/add-materiel'] " class="btn btn-primary">Add Materiel</a>
+			</div>
+		</div>
+	</div>
+</div>

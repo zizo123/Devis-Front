@@ -1,0 +1,45 @@
+<h1 align="center">Ajout Fournisseur</h1>
+<div class="container">	
+	<form class="container" novalidate #form="ngForm">
+			
+		<div class="form-group">
+			<label>Nom du Fournisseur</label>
+			<input type="text" class="form-control" name="nom_f" 
+				placeholder="Nom du Fournisseur" 
+				#nomFournisseurField="ngModel" 
+				[(ngModel)]="fournisseur.nom_f" required>
+				<p *ngIf="nomFournisseurField.invalid && nomFournisseurField.touched" class="alert alert-danger">Nom Invalide</p>
+		</div>
+
+		<div class="form-group">
+			<label>Adresse du Fournisseur</label>
+			<input type="text" class="form-control" name="adresse_f" 
+				placeholder="Adresse complete du Fournisseur" 
+				#adresseFournisseurField="ngModel" 
+				[(ngModel)]="fournisseur.adresse_f" required>
+				<p *ngIf="adresseFournisseurField.invalid && adresseFournisseurField.touched" class="alert alert-danger">Adresse Invalide</p>
+		</div>
+			
+		<div class="form-group">
+			<label>Telephone du Fournisseur</label>
+			<input type="text" class="form-control" name="telephone_f" 
+				placeholder="Telephone du Fournisseur" 
+				#telephoneFournisseurField="ngModel" 
+				[(ngModel)]="fournisseur.telephone_f" required>
+				<p *ngIf="telephoneFournisseurField.invalid && telephoneFournisseurField.touched" class="alert alert-danger">Telephone Invalide</p>
+		</div>
+
+		<div class="form-group">
+			<label>Email du Fournisseur</label>
+			<input type="email" class="form-control" name="email" 
+				placeholder="Email du Fournisseur" 
+				#emailFournisseurField="ngModel" 
+				[(ngModel)]="fournisseur.email_f" required>
+				<p *ngIf="emailFournisseurField.invalid && emailFournisseurField.touched" class="alert alert-danger">email Invalide</p>
+		</div>
+
+	</form>
+	<a  href="fournisseur">
+		<button type="button" [disabled]="form.invalid" class="btn btn-primary" (click)="addFournisseur()">Ajouter Fournisseur</button>
+	</a>
+</div>

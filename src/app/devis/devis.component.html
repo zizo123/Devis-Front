@@ -1,0 +1,60 @@
+<h1 align="center" id="color">Liste des Devis</h1>
+  <form>
+  <div class="container">
+	<div class="row">
+			<h2 id="color">Chercher Un Fournisseur</h2>
+					<div class="input-group ">
+						<div >
+							<input  autocomplete="off" #searchTextBox (keyup)="onKeyup(searchTextBox.value)" class="form-control" name="search" placeholder="Chercher le nom d'un Fournisseur...">
+								  	 
+							<div [class.open]="!autocompleteBox.hide">	
+									<ul *ngIf="!fournisseur.totalPages" class="dropdown-menu" >
+										<li (click)="showDetail(fournisseur)" *ngFor="let fournisseur of fournisseurList">
+											{{fournisseur.nom_f}}
+										</li>
+									</ul>
+								</div>		
+						</div> 
+									<span class="input-group-btn">
+										<button class="btn btn-danger"  type="button" >
+											<span class=" glyphicon glyphicon-search" ></span>
+										</button>
+									</span>
+								
+						</div>
+				</div>
+			</div>
+			<hr size=0 width=30% align=center> 
+
+        
+    <div class="col-md-12">
+  <div class="table-responsive">
+  <table class="table table-bordred table-striped"> 
+	<thead class="thead-inverse">
+    <tr>
+      <th>Id Devis</th>
+      <th>Reference du Devis</th>
+      <th>Etat  du Devis</th>
+      <th>Date de Creation</th>
+    </tr>
+  </thead>
+	  <tbody>
+		<tr *ngFor="let offre of this.offreList" (click)="goToDetails(offre)" class="clickable">
+		  <td>{{offre.id_devis}}</td>
+		  <td>{{offre.reference}}</td>
+		  <td>{{offre.etat_devis}}</td>
+		  <td>{{offre.dateCreation}}</td>
+		</tr>
+	  </tbody>	
+</table>
+</div>
+</div>  
+
+<hr size=0 width=30% align=center> 
+</form>
+    
+<div align="center">
+		<a (click)="creerDevis()">
+			<input type="button" class="bouton12" value=" Nouveau Devis" [disabled]="!this.isEnable" > 
+		</a>
+	</div>

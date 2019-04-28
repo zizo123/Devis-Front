@@ -1,0 +1,130 @@
+
+<div id="printpage">
+<img src="assets/img/header.PNG">
+<title>div print</title>
+
+
+<div id="center">
+
+<hr size=1 width=0,5% align=left > 
+<img src="assets/img/sqli-logo.png"> 
+<h2> SQLI MAROC </h2>
+
+<hr size=1 width=21% align=left > 
+
+<h6 id="mr"> A l'attention de Monsieur le Fournisseur, </h6>
+<h5 id="mr"> Objet : Offre de prix </h5>
+<div>
+<table id="tab1" BORDER="1"> 
+      <tr > 
+       <th > Fournisseur </th> 
+       <td> {{fourn.name}} </td> 
+      </tr>
+    <tr>
+ <th bgcolor="white" width="200"> Date de devis </th> 
+ <td> 23-07-2017 </td>
+    </tr> 
+  </table>
+      
+</div>
+
+  <hr size="1" width="0,5%" align="left" >
+
+
+<div>
+  <table>
+ <h6 id="mr">Monsieur, <br>
+  Afin de donner corps à nos projets, nous sommes à la recherche de matériel informatique, et plus particulièrement la liste ci-dessous.
+  Nous vous remercions par avance de toute l'attention que vous saurez nous porter à notre requête et nous souhaitons recevoir les dernières mises à jour des prix du matériel suivant :
+</h6>
+  </table>
+
+  <form class="hidden-print">
+  <div class="container">
+  <div class="row">
+    <div class="container">
+     <div class="row">
+       	<div class="input-group ">
+       	    <div>
+							<input autocomplete="off" #searchTextBox (keyup)="onKeyup(searchTextBox.value)" class="form-control" name="search" placeholder="Choisir votre Materiel ...">
+								<div   [class.open]="!autocompleteBox.hide">	
+									<ul  class="dropdown-menu" >
+										<li (click)="addElementToList(materiel)" *ngFor="let materiel of this.autoCompleteMaterielList">
+											{{materiel.numMat}}
+										</li>
+									</ul>
+								</div>		
+						</div>
+                  <span class="input-group-btn">
+										<button class="btn btn-danger"  type="button" >
+											<span class=" glyphicon glyphicon-search" ></span>
+										</button>
+									</span>
+              
+        </div>
+      </div>
+      </div>
+
+ </div>
+</div>
+
+</form>
+    <hr size=0 width=30% align=center> 
+
+    <div class="col-md-12">
+  <div class="table-responsive">
+  <table class="table table-bordred table-striped">
+    <thead class="thead-inverse">
+    <tr>
+      <th>Reference</th>
+      <th>Designation</th>
+      <th>Nom fournisseur</th>
+      <th>Marque Matériel</th>
+      <th>Qté</th>
+      <th>Prix HT</th>
+      <th>Montant HT</th>
+      <th class="hidden-print">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr *ngFor="let f of this.materielList" >
+      <td>{{f.numMat}}</td>
+      <td>{{f.description}}</td>
+      <td>{{fourn.name}}</td> 
+      <td contenteditable='true' >{{f.marque}}</td>
+
+      <td id="disapear"><input  [(ngModel)]="f.quantity"></td>
+
+      <th>{{f.prixMateriel}}</th>
+      <th>{{f.quantity*f.prixMateriel }}</th>
+      <th>
+        <a (click)="deleteOffreF(offre)" class="hidden-print">
+          <span class="glyphicon glyphicon-trash " ></span>
+       </a>
+     </th>
+    </tr>
+
+ </table>
+
+
+ </div>
+</div>
+    <hr size=0 width=30% align=center> 
+
+        <div align="center">
+        <a class="bouton12" (click)="saveListOffre()"  class="hidden-print"> Générer Devis </a>
+        </div>
+        
+        <hr size="1" width="5%" align="center" >
+
+        <div align="center"  class="hidden-print">
+        <input class="bouton12" type="button" (click)="QPrint()" value="Print" />
+        </div>
+
+    </div>
+    </div>
+  <footer>
+  <img src="assets/img/footer.PNG">
+  </footer>
+</div>

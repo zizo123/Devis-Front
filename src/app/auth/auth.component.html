@@ -1,0 +1,40 @@
+<body >
+<p-growl [value]="messages" sticky="sticky"></p-growl> 
+
+    
+        <div id="container">
+            <div align="center">
+<h3><b>Veuillez vous authentifier</b></h3>
+<h5> Pas de compte ? </h5> <a href="http://localhost:4200/register" class="button">Inscrivez-vous !</a>
+            </div>
+
+<hr size=1 width=100% align=left > 
+            
+
+<form (ngSubmit)="onSubmit()" #loginForm="ngForm" >
+
+    <div class="form-group">
+        <label >Email : </label>
+        <input id="email" type="email"
+               [(ngModel)]="model.email" #firstname="ngModel" name="email" pInputText>
+    </div>
+
+    <div class="form-group">
+        <label >Mot de passe : </label>
+        <input  type="password"
+               [(ngModel)]="model.password" #password="ngModel" name="password" pInputText>
+    </div>
+
+    <button pButton type="submit" label="Log In"></button>
+</form>
+</div>
+</body>
+<!--  
+<p-tabView>
+    <p-tabPanel header="Login">
+        <login></login>
+    </p-tabPanel>
+    <p-tabPanel header="Register">
+        <register></register>
+    </p-tabPanel>
+</p-tabView>  -->
